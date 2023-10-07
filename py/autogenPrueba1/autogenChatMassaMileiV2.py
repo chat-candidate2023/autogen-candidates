@@ -8,7 +8,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 
-
+SCOPES = ['https://www.googleapis.com/auth/documents.readonly']
 
 def get_google_doc_text(creds, document_id):
     service = build('docs', 'v1', credentials=creds)
@@ -37,7 +37,7 @@ if not creds or not creds.valid:
         creds.refresh(Request())
     else:
         flow = InstalledAppFlow.from_client_secrets_file(
-            'path_to_your_credentials.json', SCOPES)
+            'credentials.json', SCOPES)
         creds = flow.run_local_server(port=0)
     # Guarda las credenciales para la próxima ejecución
     with open('token.json', 'w') as token:
@@ -55,14 +55,14 @@ def fetch_text_from_url(url):
     return response.text
 
 
-massa_texto = fetch_text_from_url("https://docs.google.com/document/d/1xZoMVnmTxs80WT_NsGkvLC-a-nl-LzQxlX_TOnnAbwE")
+massa_texto = get_google_doc_text("https://docs.google.com/document/d/1xZoMVnmTxs80WT_NsGkvLC-a-nl-LzQxlX_TOnnAbwE")
     
 massa_texto = massa_texto[:4000]
 assistant_massa = AssistantAgent(name="Massa",
                                  system_message = massa_texto
 )
 
-milei_texto = fetch_text_from_url("https://docs.google.com/document/d/1danjDzXG6VIcnoGAv-AL1naOzNyFrU0j5VnZvFhi-7w/")
+milei_texto = get_google_doc_text("https://docs.google.com/document/d/1danjDzXG6VIcnoGAv-AL1naOzNyFrU0j5VnZvFhi-7w")
 milei_texto = milei_texto[:4000]
 
 assistant_milei = AssistantAgent(name="Milei",
