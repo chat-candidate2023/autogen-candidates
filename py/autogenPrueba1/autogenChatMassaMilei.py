@@ -33,10 +33,10 @@ user_proxy = UserProxyAgent(name="user_proxy")
 #user_proxy.initiate_chat(
 #    assistant_massa,
 #    assistant_milei,
-#    message="""Pueden empezar a debatir sobre un plan economico""",
+#    message="""Pueden empezar a debatir sobre un plan economico con no más de 4 intercambios""",
 #)
 
 assistant_massa.initiate_chat(
     assistant_milei,
-    message="""Pueden empezar a debatir sobre un plan economico""",
+    message="""Pueden empezar a debatir sobre un plan economico con no más de 4 intercambios""",
 )
