@@ -30,8 +30,13 @@ assistant_milei = AssistantAgent(name="Milei",
 user_proxy = UserProxyAgent(name="user_proxy")
 
 # the assistant receives a message from the user, which contains the task description
-user_proxy.initiate_chat(
-    assistant_massa,
+#user_proxy.initiate_chat(
+#    assistant_massa,
+#    assistant_milei,
+#    message="""Pueden empezar a debatir sobre un plan economico""",
+#)
+
+assistant_massa.initiate_chat(
     assistant_milei,
     message="""Pueden empezar a debatir sobre un plan economico""",
 )
